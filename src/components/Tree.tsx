@@ -16,10 +16,10 @@ const Tree: React.FC<TreeProps> = ({ className }) => {
       </div>
       
       {/* Tree leaves - layered for a Terraria-like bushy look */}
-      <div className="w-40 h-40 bg-green-800 rounded-full -mt-24 -ml-16"></div>
-      <div className="w-36 h-36 bg-green-700 rounded-full -mt-38 -ml-14"></div>
-      <div className="w-32 h-32 bg-green-600 rounded-full -mt-34 -ml-12"></div>
-      <div className="w-24 h-24 bg-green-500 rounded-full -mt-28 -ml-8"></div>
+      <div className="w-40 h-40 bg-[#3EBA27] rounded-full -mt-24 -ml-16"></div>
+      <div className="w-36 h-36 bg-[#3EBA27] opacity-90 rounded-full -mt-38 -ml-14"></div>
+      <div className="w-32 h-32 bg-[#3EBA27] opacity-80 rounded-full -mt-34 -ml-12"></div>
+      <div className="w-24 h-24 bg-[#3EBA27] opacity-70 rounded-full -mt-28 -ml-8"></div>
       
       {/* Leaf details - light spots */}
       <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-green-300 rounded-full opacity-50"></div>

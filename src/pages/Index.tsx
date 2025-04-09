@@ -19,6 +19,11 @@ const Index = () => {
     } else {
       audio.play().catch(error => {
         console.log("Auto-play was prevented. User interaction needed.");
+        toast({
+          title: "Haz clic para la música",
+          description: "Haz clic en el botón para reproducir la música de fondo",
+          duration: 5000,
+        });
       });
     }
     setIsPlaying(!isPlaying);
@@ -36,6 +41,13 @@ const Index = () => {
     audio.volume = 0.3;
     audio.loop = true;
     
+    // Instructions for music
+    toast({
+      title: "Haz clic para la música",
+      description: "Haz clic en el botón para reproducir la música de fondo",
+      duration: 5000,
+    });
+    
     // Cleanup on component unmount
     return () => {
       audio.pause();
@@ -44,7 +56,7 @@ const Index = () => {
   }, [toast, audio]);
 
   return (
-    <div className="min-h-screen bg-terraria-sky relative py-10 px-4">
+    <div className="min-h-screen bg-[#1673FF] relative py-10 px-4">
       {/* Animated Background */}
       <AnimatedBackground />
       

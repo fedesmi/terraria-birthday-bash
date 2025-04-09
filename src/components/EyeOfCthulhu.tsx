@@ -19,7 +19,7 @@ const EyeOfCthulhu: React.FC<EyeOfCthulhuProps> = ({ className }) => {
   return (
     <div className={`eye-of-cthulhu ${className || ''} animate-float`}>
       {/* Main eye */}
-      <div className={`w-14 h-14 ${isAngry ? 'bg-red-700' : 'bg-purple-700'} rounded-full relative transition-colors duration-500`}>
+      <div className={`w-14 h-14 ${isAngry ? 'bg-red-700' : 'bg-purple-700'} rounded-full relative transition-colors duration-500 shadow-lg`}>
         {/* Iris */}
         <div className="absolute w-10 h-10 bg-black rounded-full top-2 left-2">
           {/* Pupil */}
@@ -41,6 +41,13 @@ const EyeOfCthulhu: React.FC<EyeOfCthulhuProps> = ({ className }) => {
           </>
         )}
       </div>
+      
+      {/* Add blood drips when angry */}
+      {isAngry && (
+        <div className="absolute -bottom-10 left-6 w-2 h-8 bg-red-600 animate-drip" 
+             style={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 70%, 50% 100%, 0% 70%)' }}>
+        </div>
+      )}
     </div>
   );
 };
