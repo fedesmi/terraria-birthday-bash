@@ -1,13 +1,28 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import InvitationCard from '../components/InvitationCard';
 import AnimatedBackground from '../components/AnimatedBackground';
 import MovingObjects from '../components/MovingObjects';
 import MapLocation from '../components/MapLocation';
 import { useToast } from "../hooks/use-toast";
+import { Button } from "@/components/ui/button";
+import { Volume2, VolumeX } from "lucide-react";
 
 const Index = () => {
   const { toast } = useToast();
+  const [audio] = useState(new Audio('https://vgmsite.com/soundtracks/terraria-soundtrack/zgjljsxt/05%20Overworld%20Day.mp3'));
+  const [isPlaying, setIsPlaying] = useState(false);
+  
+  const toggleAudio = () => {
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play().catch(error => {
+        console.log("Auto-play was prevented. User interaction needed.");
+      });
+    }
+    setIsPlaying(!isPlaying);
+  };
   
   useEffect(() => {
     // Show welcome toast
@@ -17,24 +32,16 @@ const Index = () => {
       duration: 5000,
     });
     
-    // Add audio - Terraria music
-    const audio = new Audio('https://vgmsite.com/soundtracks/terraria-soundtrack/zgjljsxt/05%20Overworld%20Day.mp3');
+    // Configure audio
     audio.volume = 0.3;
     audio.loop = true;
     
-    const playPromise = audio.play();
-    
-    if (playPromise !== undefined) {
-      playPromise.catch(error => {
-        console.log("Auto-play was prevented. Click interaction needed.");
-      });
-    }
-    
+    // Cleanup on component unmount
     return () => {
       audio.pause();
       audio.currentTime = 0;
     };
-  }, [toast]);
+  }, [toast, audio]);
 
   return (
     <div className="min-h-screen bg-terraria-sky relative py-10 px-4">
@@ -43,6 +50,16 @@ const Index = () => {
       
       {/* Moving Objects */}
       <MovingObjects />
+      
+      {/* Audio control button */}
+      <Button 
+        variant="outline"
+        size="icon"
+        className="fixed top-4 right-4 z-50 bg-opacity-70 backdrop-blur-sm"
+        onClick={toggleAudio}
+      >
+        {isPlaying ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
+      </Button>
       
       {/* Main content */}
       <div className="container mx-auto max-w-4xl relative z-20">

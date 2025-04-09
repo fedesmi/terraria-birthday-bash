@@ -1,10 +1,12 @@
 
 import React, { useEffect, useState } from 'react';
 import Slime from './Slime';
+import Zombie from './Zombie';
+import EyeOfCthulhu from './EyeOfCthulhu';
 
 interface MovingObject {
   id: number;
-  type: 'slime' | 'star';
+  type: 'slime' | 'star' | 'zombie' | 'eye';
   position: {
     x: number;
     y: number;
@@ -22,9 +24,9 @@ const MovingObjects: React.FC = () => {
 
   useEffect(() => {
     // Create initial objects
-    const initialObjects: MovingObject[] = Array.from({ length: 10 }, (_, i) => ({
+    const initialObjects: MovingObject[] = Array.from({ length: 15 }, (_, i) => ({
       id: i,
-      type: Math.random() > 0.5 ? 'slime' : 'star',
+      type: ['slime', 'star', 'zombie', 'eye'][Math.floor(Math.random() * 4)],
       position: {
         x: Math.random() * window.innerWidth,
         y: Math.random() * window.innerHeight,
@@ -93,6 +95,10 @@ const MovingObjects: React.FC = () => {
         >
           {obj.type === 'slime' ? (
             <Slime color={obj.color} />
+          ) : obj.type === 'zombie' ? (
+            <Zombie />
+          ) : obj.type === 'eye' ? (
+            <EyeOfCthulhu />
           ) : (
             <div className={`w-full h-full ${obj.color} rounded-full animate-pulse flex items-center justify-center text-yellow-100`}>
               ★
