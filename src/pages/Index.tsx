@@ -10,7 +10,7 @@ import { Volume2, VolumeX } from "lucide-react";
 
 const Index = () => {
   const { toast } = useToast();
-  const [audio] = useState(new Audio('https://vgmsite.com/soundtracks/terraria-soundtrack/zgjljsxt/05%20Overworld%20Day.mp3'));
+  const [audio] = useState(new Audio('https://eta.vgmtreasurechest.com/soundtracks/terraria-1.4.4-gamerip-2011/bsphpwcxgk/06.%20Title%20Screen.mp3'));
   const [isPlaying, setIsPlaying] = useState(false);
   
   const toggleAudio = () => {
