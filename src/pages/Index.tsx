@@ -41,16 +41,10 @@ const Index = () => {
     audio.volume = 0.3;
     audio.loop = true;
     
-    // Instructions for music
-    toast({
-      title: "Haz clic para la música",
-      description: "Haz clic en el botón para reproducir la música de fondo",
-      duration: 5000,
-    });
-    
+       
     // Cleanup on component unmount
     return () => {
-      audio.pause();
+      audio.play();
       audio.currentTime = 0;
     };
   }, [toast, audio]);
