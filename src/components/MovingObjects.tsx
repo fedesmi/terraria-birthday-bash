@@ -24,26 +24,32 @@ const MovingObjects: React.FC = () => {
 
   useEffect(() => {
     // Create initial objects
-    const initialObjects: MovingObject[] = Array.from({ length: 15 }, (_, i) => ({
-      id: i,
-      type: ['slime', 'star', 'zombie', 'eye'][Math.floor(Math.random() * 4)],
-      position: {
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
-      },
-      speed: {
-        x: (Math.random() - 0.5) * 3,
-        y: (Math.random() - 0.5) * 3,
-      },
-      color: [
-        'bg-green-400', 
-        'bg-blue-400', 
-        'bg-red-400', 
-        'bg-yellow-400', 
-        'bg-purple-400'
-      ][Math.floor(Math.random() * 5)],
-      size: 20 + Math.random() * 20,
-    }));
+    const initialObjects: MovingObject[] = Array.from({ length: 15 }, (_, i) => {
+      // Generate a valid type value using an array and random selection
+      const validTypes: ('slime' | 'star' | 'zombie' | 'eye')[] = ['slime', 'star', 'zombie', 'eye'];
+      const randomType = validTypes[Math.floor(Math.random() * validTypes.length)];
+      
+      return {
+        id: i,
+        type: randomType,
+        position: {
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+        },
+        speed: {
+          x: (Math.random() - 0.5) * 3,
+          y: (Math.random() - 0.5) * 3,
+        },
+        color: [
+          'bg-green-400', 
+          'bg-blue-400', 
+          'bg-red-400', 
+          'bg-yellow-400', 
+          'bg-purple-400'
+        ][Math.floor(Math.random() * 5)],
+        size: 20 + Math.random() * 20,
+      };
+    });
 
     setObjects(initialObjects);
 
