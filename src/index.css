@@ -105,6 +105,12 @@
   }
 }
 
+/* Grass animation */
+@keyframes grass-sway {
+  0%, 100% { transform: rotateZ(-5deg); }
+  50% { transform: rotateZ(5deg); }
+}
+
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
@@ -124,6 +130,10 @@
 
 .animate-pulse {
   animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-grass {
+  animation: grass-sway 3s ease-in-out infinite;
 }
 
 .pixel-box {
@@ -189,4 +199,10 @@
   position: absolute;
   background: white;
   border-radius: 12px;
+}
+
+/* Enhanced Eye of Cthulhu */
+.eye-of-cthulhu {
+  filter: drop-shadow(0 0 8px rgba(255, 0, 0, 0.6));
+  transition: all 0.5s;
 }

@@ -25,8 +25,8 @@ const MovingObjects: React.FC = () => {
   useEffect(() => {
     // Create initial objects
     const initialObjects: MovingObject[] = Array.from({ length: 15 }, (_, i) => {
-      // Generate a valid type value using an array and random selection
-      const validTypes: ('slime' | 'star' | 'zombie' | 'eye')[] = ['slime', 'star', 'zombie', 'eye'];
+      // Generate a valid type value with higher probability for 'eye'
+      const validTypes: ('slime' | 'star' | 'zombie' | 'eye')[] = ['slime', 'star', 'zombie', 'eye', 'eye'];
       const randomType = validTypes[Math.floor(Math.random() * validTypes.length)];
       
       return {
