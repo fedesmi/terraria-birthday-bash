@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -24,6 +25,18 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				terraria: {
+					dirt: '#8b5a2b',
+					grass: '#8fbc8f',
+					stone: '#a9a9a9',
+					wood: '#cd853f',
+					copper: '#b87333',
+					iron: '#a19d94',
+					gold: '#ffd700',
+					sky: '#87ceeb',
+					water: '#1e90ff',
+					lava: '#ff4500'
+				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
@@ -62,6 +75,9 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				}
+			},
+			fontFamily: {
+				pixel: ['"Press Start 2P"', 'cursive'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
