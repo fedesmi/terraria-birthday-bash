@@ -1,33 +1,13 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import InvitationCard from '../components/InvitationCard';
 import AnimatedBackground from '../components/AnimatedBackground';
 import MovingObjects from '../components/MovingObjects';
 import MapLocation from '../components/MapLocation';
 import { useToast } from "../hooks/use-toast";
-import { Button } from "@/components/ui/button";
-import { Volume2, VolumeX } from "lucide-react";
 
 const Index = () => {
   const { toast } = useToast();
-  const [audio] = useState(new Audio('https://eta.vgmtreasurechest.com/soundtracks/terraria-1.4.4-gamerip-2011/bsphpwcxgk/06.%20Title%20Screen.mp3'));
-  const [isPlaying, setIsPlaying] = useState(true);
-  
-  const toggleAudio = () => {
-    if (isPlaying) {
-      audio.pause();
-    } else {
-      audio.play().catch(error => {
-        console.log("Auto-play was prevented. User interaction needed.");
-        toast({
-          title: "Haz clic para la música",
-          description: "Haz clic en el botón para reproducir la música de fondo",
-          duration: 5000,
-        });
-      });
-    }
-    setIsPlaying(!isPlaying);
-  };
   
   useEffect(() => {
     // Show welcome toast
@@ -37,35 +17,32 @@ const Index = () => {
       duration: 5000,
     });
     
-    // Configure audio
+    // Add audio - Terraria music
+    const audio = new Audio('https://eta.vgmtreasurechest.com/soundtracks/terraria-1.4.4-gamerip-2011/bsphpwcxgk/06.%20Title%20Screen.mp3');
     audio.volume = 0.3;
     audio.loop = true;
     
-       
-    // Cleanup on component unmount
+    const playPromise = audio.play();
+    
+    if (playPromise !== undefined) {
+      playPromise.catch(error => {
+        console.log("Auto-play was prevented. Click interaction needed.");
+      });
+    }
+    
     return () => {
-      audio.play();
+      audio.pause();
       audio.currentTime = 0;
     };
-  }, [toast, audio]);
+  }, [toast]);
 
   return (
-    <div className="min-h-screen bg-[#1673FF] relative py-10 px-4">
+    <div className="min-h-screen bg-terraria-sky relative py-10 px-4">
       {/* Animated Background */}
       <AnimatedBackground />
       
       {/* Moving Objects */}
       <MovingObjects />
-      
-      {/* Audio control button */}
-      <Button 
-        variant="outline"
-        size="icon"
-        className="fixed top-4 right-4 z-50 bg-opacity-70 backdrop-blur-sm"
-        onClick={toggleAudio}
-      >
-        {isPlaying ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
-      </Button>
       
       {/* Main content */}
       <div className="container mx-auto max-w-4xl relative z-20">
