@@ -11,7 +11,7 @@ import { Volume2, VolumeX } from "lucide-react";
 const Index = () => {
   const { toast } = useToast();
   const [audio] = useState(new Audio('https://eta.vgmtreasurechest.com/soundtracks/terraria-1.4.4-gamerip-2011/bsphpwcxgk/06.%20Title%20Screen.mp3'));
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   
   const toggleAudio = () => {
     if (isPlaying) {
